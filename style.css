@@ -9,15 +9,6 @@ body {
     background: black;
 }
 
-.wrapper{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vh;
-    gap: 120px;
-}
-
 .kshape{
     color: #fff;
     text-shadow: 0 0 50px #0072ff, 0 0 100px #0072ff, 0 0 150px #0072ff, 0 0 200px #0072ff;
@@ -27,31 +18,35 @@ body {
     stroke-miterlimit: 1;
 }
 .rshape{
-    /* fill: #b5b5b6; */
     fill: white;
     filter: url(#red-glow);
-    /* filter: hue-rotate(90deg); 90deg rotation */
 }
 
-
-
-#logo {
-    position: absolute;
-    top: 100px;
-    left: 102px;
+.center {
     margin: auto;
-    width: 10%;
-    padding: 5px 5px 30px 5px;
-    /* animation: animate 4s linear infinite; */
-    
-    /* margin-left: 30%; */
+    width: 20%;
+    /* border: 3px solid green; */
+    padding: 10px;
+  }
+
+#tracelogo {
+    position: absolute;
+    width: 20%;
 }
 
-#newlogo {
+#glowlogo {
+    opacity: 0;
     font-size: 100px;
     color: #fff;
-    animation: animate 10s linear infinite;
-    animation-delay: 0.3s;
+    animation: appear 0.5s linear, animate 10s linear infinite;
+    animation-delay: 2.5s;
+    animation-fill-mode: forwards;
+}
+
+.logo_path {
+    stroke-dasharray: 1900;
+    stroke-dashoffset: 1900;
+    animation: trace 3s forwards;
 }
 
 @keyframes animate {
@@ -60,5 +55,29 @@ body {
     }
     to{
         filter: hue-rotate(360deg);
+    }
+}
+
+@keyframes trace {
+    0% {
+        opacity: 1;
+        stroke-dashoffset: 1900;
+    }
+    90% {
+        opacity: 1;
+    }
+    
+    100% {
+        opacity: 1;
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
